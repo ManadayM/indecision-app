@@ -1,52 +1,53 @@
 console.log('App.js is running');
 
 // assignment
-var app = {
+const app = {
     title: 'Indecision App',
     subTitle: 'Put your life in the hands of a computer',
-    options: ['Option 1', 'Option 2']
+    options: []
 };
 
-// JSX - JavaScript XML
-var template = (
-    <div>
-        <h1>{app.title}</h1>
-        {app.subTitle && <p>{app.subTitle}</p>}
-        <p>{app.options.length > 0 ? 'Here are your options': 'No options'}</p>
-    </div>
-);
+const onAddOption = (e) => {
+    e.preventDefault();
 
-let count = 0;
+    const $el = e.target.elements.option;
+    const option = $el.value;
 
-const addOne = function(){
-    count++;
-    renderCounterApp();
+    console.log(e);
+
+    if(option){
+        app.options.push(option);
+        $el.value = '';
+        renderApp();
+    }
 };
 
-const minusOne = function(){
-    count--;
-    renderCounterApp();
-};
-
-const reset = function(){
-    count = 0;
-    renderCounterApp();
+const onRemoveAll = () => {
+    app.options.length = 0;
+    app.options = [];
+    renderApp();
 };
 
 const appRoot = document.getElementById('app');
 
-const renderCounterApp = () => {
-    
-    const template2 = (
+const renderApp = () => {
+
+    const template = (
         <div>
-            <h1>Count: {count}</h1>
-            <button onClick={addOne}>+1</button>
-            <button onClick={minusOne}>-1</button>
-            <button onClick={reset}>Reset</button>
+            <h1>{app.title}</h1>
+            {app.subTitle && <p>{app.subTitle}</p>}
+            <p>{app.options.length > 0 ? 'Here are your options': 'No options'}</p>
+            <button onClick={onRemoveAll}>Remove All</button>
+            <ol>
+                {app.options.map((option) => <li key={option}>{option}</li>)}
+            </ol>
+            <form onSubmit={onAddOption}>
+                <input type="text" name="option" />
+                <button>Add Option</button>
+            </form>
         </div>
     );
-    
-    ReactDOM.render(template2, appRoot);
+    ReactDOM.render(template, appRoot);
 };
 
-renderCounterApp();
+renderApp();

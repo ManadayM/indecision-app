@@ -1,19 +1,15 @@
-// React enforces uppercase first letter for class name
-// the reason is when we keep it small React tries to create
-// html element out of it.
-
-// var jsx = React.createElement(
-//     'div',
-//     null,
-//     React.createElement(
-//         'h1',
-//         null,
-//         'Title'
-//     ),
-//     React.createElement(Header, null),
-//     React.createElement(Header, null),
-//     React.createElement(Header, null)
-// );
+class IndecisionApp extends React.Component {
+    render() {
+        return (
+            <div>
+                <Header />
+                <Action />
+                <Options />
+                <AddOption />
+            </div>
+        );
+    }
+}
 
 class Header extends React.Component {
     render() {
@@ -40,10 +36,18 @@ class Options extends React.Component {
     render(){
         return (
             <div>
-                <ol>
-                    <li>Item 1</li>
-                    <li>Item 2</li>
-                </ol>
+                Options component here
+                <Option />
+            </div>
+        );
+    }
+}
+
+class Option extends React.Component {
+    render(){
+        return (
+            <div>
+                Option Component
             </div>
         );
     }
@@ -60,13 +64,4 @@ class AddOption extends React.Component {
     }
 }
 
-const jsx = (
-    <div>
-        <Header />
-        <Action />
-        <Options />
-        <AddOption />
-    </div>
-);
-
-ReactDOM.render(jsx, document.getElementById('app'));
+ReactDOM.render(<IndecisionApp />, document.getElementById('app'));

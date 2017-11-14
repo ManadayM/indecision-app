@@ -5,7 +5,7 @@ class Counter extends React.Component {
         this.handleMinusOne = this.handleMinusOne.bind(this);
         this.handleReset = this.handleReset.bind(this);
         this.state = {
-            count: 0
+            count: props.count
         };
     }
     handleAddOne(){
@@ -42,39 +42,8 @@ class Counter extends React.Component {
     }
 }
 
+Counter.defaultProps = {
+    count: 0
+};
+
 ReactDOM.render(<Counter />, document.getElementById('app'));
-
-// let count = 0;
-
-// const addOne = function(){
-//     count++;
-//     renderCounterApp();
-// };
-
-// const minusOne = function(){
-//     count--;
-//     renderCounterApp();
-// };
-
-// const reset = function(){
-//     count = 0;
-//     renderCounterApp();
-// };
-
-// const appRoot = document.getElementById('app');
-
-// const renderCounterApp = () => {
-    
-//     const template2 = (
-//         <div>
-//             <h1>Count: {count}</h1>
-//             <button onClick={addOne}>+1</button>
-//             <button onClick={minusOne}>-1</button>
-//             <button onClick={reset}>Reset</button>
-//         </div>
-//     );
-    
-//     ReactDOM.render(template2, appRoot);
-// };
-
-// renderCounterApp();

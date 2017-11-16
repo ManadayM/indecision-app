@@ -28,7 +28,29 @@ var IndecisionApp = function (_React$Component) {
         return _this;
     }
 
+    // only class based components support React Life Cycle methods - obviously :)
+
+
     _createClass(IndecisionApp, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            console.log('componentDidMount');
+        }
+    }, {
+        key: 'componentDidUpdate',
+        value: function componentDidUpdate(prevProps, prevState) {
+            console.log('componentDidUpdate');
+        }
+
+        // to test this method, run this in Dev Tools console
+        // ReactDOM.render('<p>', document.getElementById('app'));
+
+    }, {
+        key: 'componentWillUnmount',
+        value: function componentWillUnmount() {
+            console.log('componentWillUnmount');
+        }
+    }, {
         key: 'handleDeleteOptions',
         value: function handleDeleteOptions() {
             this.setState(function () {

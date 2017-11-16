@@ -11,6 +11,21 @@ class IndecisionApp extends React.Component {
             options: props.options
         }
     }
+
+    // only class based components support React Life Cycle methods - obviously :)
+    componentDidMount() {
+        console.log('componentDidMount');
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        console.log('componentDidUpdate');
+    }
+
+    // to test this method, run this in Dev Tools console
+    // ReactDOM.render('<p>', document.getElementById('app'));
+    componentWillUnmount() {
+        console.log('componentWillUnmount');
+    }
     
     handleDeleteOptions(){
         this.setState(() => ({ options: [] }));

@@ -15,10 +15,24 @@ class IndecisionApp extends React.Component {
     // only class based components support React Life Cycle methods - obviously :)
     componentDidMount() {
         console.log('componentDidMount');
+        try {
+            const json = localStorage.getItem('options');
+            const options = JSON.parse(json);
+            if(options){
+                this.setState(() => ({ options }));
+            }
+        } catch (e) {
+            
+        }
     }
 
     componentDidUpdate(prevProps, prevState) {
-        console.log('componentDidUpdate');
+        console.log('componentDidUpdate - outer');
+        if(prevState.options.length !== this.state.options.length){
+            console.log('componentDidUpdate - inner');
+            const json = JSON.stringify(this.state.options);
+            localStorage.setItem('options', json);
+        }
     }
 
     // to test this method, run this in Dev Tools console
@@ -117,7 +131,10 @@ const Options = (props) => {
             >
                 Remove All
             </button>
-            {options.length > 0 && (
+            
+            { options.length === 0 && (<p>Please add an option to get started!</p>) }
+
+            {
                 options.map((option) => (
                     <Option 
                         key={option} 
@@ -125,7 +142,7 @@ const Options = (props) => {
                         handleDeleteOption={props.handleDeleteOption}
                     />)
                 )
-            )}
+            }
         </div>
     );
 };
@@ -159,6 +176,10 @@ class AddOption extends React.Component {
         const error = this.props.handleAddOption(option);
         
         this.setState(() => ({ error }));
+
+        if(!error){
+            $el.value = '';
+        }
     }
 
     render(){

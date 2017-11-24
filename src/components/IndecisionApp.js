@@ -57,12 +57,6 @@ export default class IndecisionApp extends React.Component {
         }
     }
 
-    // to test this method, run this in Dev Tools console
-    // ReactDOM.render('<p>', document.getElementById('app'));
-    componentWillUnmount() {
-        console.log('componentWillUnmount');
-    }
-
     render() {
         const subTitle = 'Put your life in the hands of a computer';
 

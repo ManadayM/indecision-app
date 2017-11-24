@@ -12,7 +12,8 @@ const config = {
             test: /\.js$/,
             exclude: /node_modules/
         }]
-    }
+    },
+    devtool: 'cheap-module-eval-source-map'
 };
 
 module.exports = config;
